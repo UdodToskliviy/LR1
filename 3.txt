@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int correct = 0;
+
+        int x = 0, n = 0;
+
+        while(correct == 0) {
+            System.out.println("Введите числовые значения: сначала x, потом n");
+            int inpx = scan.nextInt();
+            int inpn = scan.nextInt();
+
+
+            x = inpx;
+            n = inpn;
+            for(int i = -14;i<15;i++){
+                if(inpn == i){
+                    correct = 1;
+                    break;
+                }
+            }
+            if(correct == 1){
+                break;
+            }
+            System.out.println("Некорректные входные данные. повторите ввод");
+        }
+        int sign = 1;
+        if (n < 0) {
+            sign = -1;
+            n *= -1;
+        }
+        double res = 1;
+        for (int i = 0; i < n; i++) {
+            if (sign == 1) {
+                res *= x;
+            } else{
+                res /= x;
+            }
+        }
+        System.out.println(res);
+
+    }
+}

@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int correct = 0;
+
+        int n = 0;
+        double r = 0;
+
+        int count = 0;
+
+        while(correct == 0) {
+            System.out.println("Введите сначала предполагаемое количество точек, потом радиус окружности");
+            int inpn = scan.nextInt();
+            double inpr = scan.nextDouble();
+
+            n = inpn;
+            r = inpr;
+            correct = 1;
+            if(inpn < 0 || inpr < 0){
+                correct = 0;
+            }
+            if(correct == 1){
+                break;
+            }
+            System.out.println("Некорректные входные данные. повторите ввод");
+        }
+
+        for(int i = 0; i < n; i++) {
+            System.out.println("Введите сначала x координату, потом y координату точки");
+            double x = scan.nextDouble();
+            double y = scan.nextDouble();
+            if(x*x + y*y < r*r){
+                count++;
+            }
+        }
+        System.out.println("Внутрь окружности попадает " + count + " точек");
+    }
+}

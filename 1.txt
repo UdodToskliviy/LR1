@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int correct = 1;
+
+        int currday = 25;
+        int currmonth = 11;
+        int curryear = 2022;
+
+        int bornday = 0, bornmonth = 0, bornyear = 0;
+
+        while(correct == 1) {
+            correct = 0;
+            System.out.println("Введите числовые значения даты рождения: сначала день, потом месяц, потом год");
+            int inpday = scan.nextInt();
+            int inpmonth = scan.nextInt();
+            int inpyear = scan.nextInt();
+
+            bornday = inpday;
+            bornmonth = inpmonth;
+            bornyear = inpyear;
+
+            switch (inpmonth) {
+                case 1, 3, 5, 7, 8, 10, 12:
+                    if (inpday > 32) {
+                        correct = 1;
+                    }
+                    break;
+                case 2:
+                    if (inpday > 28) {
+                        correct = 1;
+                    }
+                    break;
+                case 4, 6, 11, 9:
+                    if (inpday > 30) {
+                        correct = 1;
+                    }
+                    break;
+                default:
+                    correct = 1;
+            }
+            if (inpmonth < 1 || inpyear < 1 || inpday < 1) {
+                correct = 1;
+            }
+            if(correct == 0){
+                break;
+            }
+            System.out.println("Некорректные входные данные. повторите ввод");
+        }
+        int resday = 0;
+        int resmonth = 0;
+        int resyear = 0;
+        int checkmonth = 0;
+
+        if(correct == 0){
+            if(bornday > currday){
+                checkmonth = 1;
+                resday += 30;
+            }
+            resday += currday - bornday;
+            bornmonth += checkmonth;
+
+            if(bornmonth + checkmonth > currmonth){
+                resyear--;
+                resmonth += 12;
+            }
+
+            resmonth += currmonth - bornmonth;
+            resyear += curryear - bornyear;
+
+            System.out.println("Прошло " + resyear + " лет, " + resmonth + " месяцев, " + resday + " дней.");
+        }
+    }
+}
